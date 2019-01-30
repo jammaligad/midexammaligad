@@ -1,0 +1,23 @@
+{% extends 'votes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'votes:index' %}"><button type="button" class="btn btn-primary">Home</button></a>
+    <hr>
+    <div class="row">
+        <div class="container">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ candidate.lastname }}, {{ candidate.firstname }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ candidate.position }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">VOTE COUNT: {{ candidate.can.all.count }}</h6>
+                <p class="card-text">{{ candidate.platform }}</p>
+                <a href="{% url 'votes:update' candidate.id %}" class="card-link">Update</a>
+                <a href="{% url 'votes:vote' candidate.id %}" class="card-link">Vote</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

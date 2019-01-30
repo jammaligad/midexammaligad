@@ -1,0 +1,20 @@
+{% extends 'votes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'votes:index' %}"><button type="button" class="btn btn-primary">Home</button></a>
+    <hr>
+    <h1>Create Position</h1>
+    <form action="{% url 'votes:newposition' %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="row">
+                <div class="container">
+                {{ field.label }} {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+        <input type="submit" value="Create"/>
+    </form>
+</div>
+{% endblock %}

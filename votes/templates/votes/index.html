@@ -1,0 +1,23 @@
+{% extends 'votes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'votes:newcandidate' %}"><button type="button" class="btn btn-primary">Add Candidate</button></a>
+    <a href="{% url 'votes:newposition' %}"><button type="button" class="btn btn-primary">Add Position</button></a>
+    <hr>
+    {% for candidate in candidates %}
+        <div class="row">
+            <div class="container">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ candidate.lastname }}, {{ candidate.firstname }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ candidate.position }}</h6>
+                    <p class="card-text">VOTE COUNT: {{ candidate.can.all.count }}</p>
+                    <a href="{% url 'votes:detail' candidate.id %}" class="card-link">Details</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
